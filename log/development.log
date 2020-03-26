@@ -1,0 +1,670 @@
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200326072239)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nickname" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200326072239"]]
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-26 18:25:44.485869"], ["updated_at", "2020-03-26 18:25:44.485869"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRooms (20200326182627)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "token" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200326182627"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateMessages (20200326182715)
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMessages (20200326182715)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMessages (20200326182715)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "messages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "user_id" integer, "room_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_messages_on_user_id" ON "messages" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_messages_on_room_id" ON "messages" ("room_id")[0m
+  [1m[36mprimary::SchemaMigration Create (7.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200326182715"]]
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("nickname", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["nickname", "brendon"], ["created_at", "2020-03-26 18:31:04.115065"], ["updated_at", "2020-03-26 18:31:04.115065"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/users/2" for ::1 at 2020-03-26 22:11:51 +0300
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users/2"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-03-26 22:11:56 +0300
+  
+ActionController::RoutingError (uninitialized constant RoomsController
+Did you mean?  RoomController):
+  
+activesupport (6.0.2.2) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.2.2) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.2.2) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.2.2) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.2.2) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.2.2) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.2) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.2) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-03-26 22:15:44 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.8ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 3)
+  Rendered rooms/_form.html.erb (Duration: 5.2ms | Allocations: 475)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 11.0ms | Allocations: 1547)
+Completed 500 Internal Server Error in 3994ms (ActiveRecord: 2.3ms | Allocations: 95257)
+
+
+  
+ActionView::Template::Error (The asset "application.js" is not present in the asset pipeline.):
+     5:   <%= csrf_meta_tags %>
+     6: 
+     7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     8:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     9: </head>
+    10: 
+    11: <body>
+  
+app/views/layouts/application.html.erb:8
+Started GET "/" for ::1 at 2020-03-26 22:17:54 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.6ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 3)
+  Rendered rooms/_form.html.erb (Duration: 5.4ms | Allocations: 358)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 18.0ms | Allocations: 1393)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Hash: 22e404ac0f62ba4dc179
+Version: webpack 4.42.1
+Time: 2859ms
+Built at: 2020-03-26 22:18:00
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-d6597ee616cf4b4658c1.js    124 KiB  application  [emitted] [immutable]  application
+js/application-d6597ee616cf4b4658c1.js.map    138 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-d6597ee616cf4b4658c1.js js/application-d6597ee616cf4b4658c1.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 213 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'jquery3' in '/Users/andrey/ror/instatalk/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 5:0-18
+
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUser Create (4.1ms)[0m  [1m[32mINSERT INTO "users" ("nickname", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["nickname", "rufus"], ["created_at", "2020-03-26 19:18:00.811537"], ["updated_at", "2020-03-26 19:18:00.811537"]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 7134ms (Views: 7115.7ms | ActiveRecord: 8.1ms | Allocations: 199532)
+
+
+Started POST "/rooms" for ::1 at 2020-03-26 22:18:04 +0300
+Processing by RoomsController#create as HTML
+  Parameters: {"authenticity_token"=>"wuzvyj+C11Y6gHGZX8IskyGJ5uU3FMLy2jcH8w+690njoR4s06b2uH5N150oI5UhiF66J7OreKJsD8t/l/Z+HQ==", "commit"=>"Create Room"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+  [1m[36mRoom Create (0.5ms)[0m  [1m[32mINSERT INTO "rooms" ("token", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["token", "fea7"], ["created_at", "2020-03-26 19:18:04.390413"], ["updated_at", "2020-03-26 19:18:04.390413"]]
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+Redirected to http://localhost:3000/rooms/fea7
+Completed 302 Found in 8ms (ActiveRecord: 1.6ms | Allocations: 2622)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:18:04 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 199)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 21ms (Views: 18.2ms | ActiveRecord: 0.4ms | Allocations: 8881)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:18:07 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [1 times] (Duration: 1.1ms | Allocations: 185)
+  Rendered rooms/_form.html.erb (Duration: 0.7ms | Allocations: 196)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1350)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 23ms (Views: 20.2ms | ActiveRecord: 0.3ms | Allocations: 9230)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:18:08 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 52)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 18ms (Views: 15.2ms | ActiveRecord: 0.3ms | Allocations: 8412)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:26:56 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.8ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 3.0ms | Allocations: 50)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:93
+				throw err;
+				^
+
+ReferenceError: environment is not defined
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/config/webpack/environment.js:2:1)
+    at Module._compile (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/config/webpack/development.js:3:21)
+    at Module._compile (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at WEBPACK_OPTIONS (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)
+    at requireConfig (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17
+    at Array.forEach (<anonymous>)
+    at module.exports (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:71:45
+    at Object.parse (/Users/andrey/ror/instatalk/node_modules/webpack-cli/node_modules/yargs/yargs.js:567:18)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:49:8
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:366:3)
+    at Module._compile (internal/modules/cjs/loader.js:959:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/node_modules/webpack/bin/webpack.js:156:2)
+
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 3298ms (Views: 3272.6ms | ActiveRecord: 1.8ms | Allocations: 9566)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:28:11 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (1.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 3.0ms | Allocations: 50)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:93
+				throw err;
+				^
+
+ReferenceError: environment is not defined
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/config/webpack/environment.js:2:1)
+    at Module._compile (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/config/webpack/development.js:3:21)
+    at Module._compile (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at WEBPACK_OPTIONS (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)
+    at requireConfig (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17
+    at Array.forEach (<anonymous>)
+    at module.exports (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:71:45
+    at Object.parse (/Users/andrey/ror/instatalk/node_modules/webpack-cli/node_modules/yargs/yargs.js:567:18)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:49:8
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:366:3)
+    at Module._compile (internal/modules/cjs/loader.js:959:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/node_modules/webpack/bin/webpack.js:156:2)
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 3390ms (Views: 3365.7ms | ActiveRecord: 1.5ms | Allocations: 9533)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:28:30 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 50)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:93
+				throw err;
+				^
+
+ReferenceError: environment is not defined
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/config/webpack/environment.js:2:1)
+    at Module._compile (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/config/webpack/development.js:3:21)
+    at Module._compile (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (/Users/andrey/ror/instatalk/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at WEBPACK_OPTIONS (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)
+    at requireConfig (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17
+    at Array.forEach (<anonymous>)
+    at module.exports (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:71:45
+    at Object.parse (/Users/andrey/ror/instatalk/node_modules/webpack-cli/node_modules/yargs/yargs.js:567:18)
+    at /Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:49:8
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/node_modules/webpack-cli/bin/cli.js:366:3)
+    at Module._compile (internal/modules/cjs/loader.js:959:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/Users/andrey/ror/instatalk/node_modules/webpack/bin/webpack.js:156:2)
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 2814ms (Views: 2810.2ms | ActiveRecord: 0.5ms | Allocations: 9533)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:28:58 +0300
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.6ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 337)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 220ms (Views: 190.1ms | ActiveRecord: 3.4ms | Allocations: 24949)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:29:01 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.8ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 57)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 57ms (Views: 46.4ms | ActiveRecord: 0.9ms | Allocations: 8529)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:29:04 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [1 times] (Duration: 2.2ms | Allocations: 243)
+  Rendered rooms/_form.html.erb (Duration: 2.4ms | Allocations: 369)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 14.9ms | Allocations: 2504)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 49ms (Views: 39.4ms | ActiveRecord: 0.3ms | Allocations: 10668)
+
+
+Started POST "/rooms" for ::1 at 2020-03-26 22:29:05 +0300
+Processing by RoomsController#create as HTML
+  Parameters: {"authenticity_token"=>"iwwrUtFuKdzk3L2tgrXhSnRm5GrA10LHQwyH003THjhm20zcj8YVvCryLTwQsS7FQw6I3zngKETSzAQXNBLEow==", "commit"=>"Create Room"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+  [1m[36mRoom Create (4.2ms)[0m  [1m[32mINSERT INTO "rooms" ("token", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["token", "83cb"], ["created_at", "2020-03-26 19:29:05.548800"], ["updated_at", "2020-03-26 19:29:05.548800"]]
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+Redirected to http://localhost:3000/rooms/83cb
+Completed 302 Found in 24ms (ActiveRecord: 7.2ms | Allocations: 2775)
+
+
+Started GET "/rooms/83cb" for ::1 at 2020-03-26 22:29:05 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"83cb"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "83cb"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 54)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 23ms (Views: 20.7ms | ActiveRecord: 0.4ms | Allocations: 10832)
+
+
+Started GET "/rooms/83cb" for ::1 at 2020-03-26 22:37:13 +0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"83cb"}
+  [1m[36mRoom Load (0.7ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "83cb"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 50)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/andrey/ror/instatalk/public/packs
+[Webpacker] Hash: 064b786eb25137c66e2c
+Version: webpack 4.42.1
+Time: 8486ms
+Built at: 2020-03-26 22:37:25
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-d83e41a01f52f0d261c9.js    828 KiB  application  [emitted] [immutable]  application
+js/application-d83e41a01f52f0d261c9.js.map    882 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-d83e41a01f52f0d261c9.js js/application-d83e41a01f52f0d261c9.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 204 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 111 hidden modules
+
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 12190ms (Views: 12174.1ms | ActiveRecord: 2.1ms | Allocations: 9778)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:37:31 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.5ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [2 times] (Duration: 1.4ms | Allocations: 94)
+  Rendered rooms/_form.html.erb (Duration: 7.1ms | Allocations: 191)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 14.7ms | Allocations: 1140)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 72ms (Views: 69.7ms | ActiveRecord: 0.7ms | Allocations: 9103)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:37:33 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.3ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 51)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 31ms (Views: 22.5ms | ActiveRecord: 0.5ms | Allocations: 8525)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:38:05 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (1.4ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 2.8ms | Allocations: 50)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/andrey/ror/instatalk/public/packs
+[Webpacker] Hash: 59401e7101b35a77821f
+Version: webpack 4.42.1
+Time: 3979ms
+Built at: 2020-03-26 22:38:15
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9a4edc7d5bb8725de687.js    828 KiB  application  [emitted] [immutable]  application
+js/application-9a4edc7d5bb8725de687.js.map    882 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9a4edc7d5bb8725de687.js js/application-9a4edc7d5bb8725de687.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 311 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 111 hidden modules
+
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 10809ms (Views: 10781.8ms | ActiveRecord: 3.1ms | Allocations: 9720)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:38:20 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (2.0ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [2 times] (Duration: 3.7ms | Allocations: 92)
+  Rendered rooms/_form.html.erb (Duration: 5.0ms | Allocations: 191)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 30.2ms | Allocations: 1096)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 123ms (Views: 106.8ms | ActiveRecord: 2.3ms | Allocations: 9065)
+
+
+Started GET "/rooms/fea7" for ::1 at 2020-03-26 22:38:23 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"fea7"}
+  [1m[36mRoom Load (0.6ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "fea7"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 50)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 32ms (Views: 20.7ms | ActiveRecord: 0.7ms | Allocations: 9129)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:38:27 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [2 times] (Duration: 0.3ms | Allocations: 92)
+  Rendered rooms/_form.html.erb (Duration: 0.7ms | Allocations: 191)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1153)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 0.3ms | Allocations: 9673)
+
+
+Started GET "/rooms/83cb" for ::1 at 2020-03-26 22:38:34 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"83cb"}
+  [1m[36mRoom Load (0.5ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "83cb"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 50)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 27ms (Views: 19.8ms | ActiveRecord: 0.6ms | Allocations: 8565)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:38:36 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.4ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [2 times] (Duration: 0.8ms | Allocations: 92)
+  Rendered rooms/_form.html.erb (Duration: 2.3ms | Allocations: 191)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 10.4ms | Allocations: 1089)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 39ms (Views: 35.0ms | ActiveRecord: 0.5ms | Allocations: 9071)
+
+
+Started POST "/rooms" for ::1 at 2020-03-26 22:38:37 +0300
+Processing by RoomsController#create as HTML
+  Parameters: {"authenticity_token"=>"TiMY0uCPuJ0CZa/bbsf1Ckb26tNfhv8lhIu6iVYdQIaj9H9cvieE/cxLP0r8wzqFcZ6GZqaxlaYVSzlNL9yaHQ==", "commit"=>"Create Room"}
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+  [1m[36mRoom Create (3.6ms)[0m  [1m[32mINSERT INTO "rooms" ("token", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["token", "1990"], ["created_at", "2020-03-26 19:38:37.648946"], ["updated_at", "2020-03-26 19:38:37.648946"]]
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/rooms_controller.rb:13:in `create'
+Redirected to http://localhost:3000/rooms/1990
+Completed 302 Found in 23ms (ActiveRecord: 6.2ms | Allocations: 2457)
+
+
+Started GET "/rooms/1990" for ::1 at 2020-03-26 22:38:37 +0300
+Processing by RoomsController#show as HTML
+  Parameters: {"token"=>"1990"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms" WHERE "rooms"."token" = ? LIMIT ?[0m  [["token", "1990"], ["LIMIT", 1]]
+  ↳ app/controllers/rooms_controller.rb:21:in `set_room'
+  Rendering rooms/show.html.erb within layouts/application
+  Rendered rooms/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 52)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 19ms (Views: 16.8ms | ActiveRecord: 0.3ms | Allocations: 8519)
+
+
+Started GET "/" for ::1 at 2020-03-26 22:38:41 +0300
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/rooms/index.html.erb:6
+  Rendered collection of rooms/_room.html.erb [3 times] (Duration: 0.4ms | Allocations: 131)
+  Rendered rooms/_form.html.erb (Duration: 0.4ms | Allocations: 191)
+  Rendered rooms/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1758)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Completed 200 OK in 64ms (Views: 23.7ms | ActiveRecord: 0.3ms | Allocations: 9743)
+
+
